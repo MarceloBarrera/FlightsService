@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Ink.CandidateTest" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Ink.CandidateTest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ec2-54-254-213-24.ap-southeast-1.compute.amazonaws.com/Ink.CandidateTest_deploy/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="AvailabilityRequest">
+    <xs:sequence>
+      <xs:element name="DepartureDate" type="xs:dateTime" />
+      <xs:element name="Destination" nillable="true" type="xs:string" />
+      <xs:element name="Origin" nillable="true" type="xs:string" />
+      <xs:element name="ReturnDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AvailabilityRequest" nillable="true" type="tns:AvailabilityRequest" />
+  <xs:complexType name="AvailabilityResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InboundJourneys" nillable="true" type="tns:ArrayOfJourney" />
+      <xs:element minOccurs="0" name="OutoundJourneys" nillable="true" type="tns:ArrayOfJourney" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AvailabilityResponse" nillable="true" type="tns:AvailabilityResponse" />
+  <xs:complexType name="ArrayOfJourney">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Journey" nillable="true" type="tns:Journey" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJourney" nillable="true" type="tns:ArrayOfJourney" />
+  <xs:complexType name="Journey">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ArrivalStation" nillable="true" type="tns:Location" />
+      <xs:element minOccurs="0" name="ArrivalTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Carrier" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartureStation" nillable="true" type="tns:Location" />
+      <xs:element minOccurs="0" name="DepartureTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Journey" nillable="true" type="tns:Journey" />
+  <xs:complexType name="Location">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Location" nillable="true" type="tns:Location" />
+  <xs:complexType name="BookingRequest">
+    <xs:sequence>
+      <xs:element name="Journeys" nillable="true" type="tns:ArrayOfJourney" />
+      <xs:element name="Passengers" nillable="true" type="tns:ArrayOfPax" />
+      <xs:element name="SessionKey" nillable="true" type="xs:string" />
+      <xs:element name="UserId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BookingRequest" nillable="true" type="tns:BookingRequest" />
+  <xs:complexType name="ArrayOfPax">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Pax" nillable="true" type="tns:Pax" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPax" nillable="true" type="tns:ArrayOfPax" />
+  <xs:complexType name="Pax">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContactDetails" nillable="true" type="tns:ContactDetails" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PassportDetails" nillable="true" type="tns:PassportDetails" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Pax" nillable="true" type="tns:Pax" />
+  <xs:complexType name="ContactDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContactDetails" nillable="true" type="tns:ContactDetails" />
+  <xs:complexType name="PassportDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Nationality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PassportNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PassportDetails" nillable="true" type="tns:PassportDetails" />
+  <xs:complexType name="BookingResponse">
+    <xs:sequence>
+      <xs:element name="BookingReference" type="ser:guid" />
+      <xs:element name="BookingSummary" nillable="true" type="tns:BookingSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BookingResponse" nillable="true" type="tns:BookingResponse" />
+  <xs:complexType name="BookingSummary">
+    <xs:sequence>
+      <xs:element name="AmountTotal" type="xs:decimal" />
+      <xs:element name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element name="PassengerFeeBreakdown" nillable="true" type="tns:ArrayOfPaxFee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BookingSummary" nillable="true" type="tns:BookingSummary" />
+  <xs:complexType name="ArrayOfPaxFee">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaxFee" nillable="true" type="tns:PaxFee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPaxFee" nillable="true" type="tns:ArrayOfPaxFee" />
+  <xs:complexType name="PaxFee">
+    <xs:sequence>
+      <xs:element name="Amount" type="xs:decimal" />
+      <xs:element name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element name="Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaxFee" nillable="true" type="tns:PaxFee" />
+  <xs:complexType name="SavePaxDetailsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Passengers" nillable="true" type="tns:ArrayOfPax" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SavePaxDetailsRequest" nillable="true" type="tns:SavePaxDetailsRequest" />
+  <xs:complexType name="SavePaxDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BookingSummary" nillable="true" type="tns:BookingSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SavePaxDetailsResponse" nillable="true" type="tns:SavePaxDetailsResponse" />
+</xs:schema>

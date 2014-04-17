@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Booking" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ec2-54-254-213-24.ap-southeast-1.compute.amazonaws.com/Ink.CandidateTest_deploy/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ec2-54-254-213-24.ap-southeast-1.compute.amazonaws.com/Ink.CandidateTest_deploy/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ec2-54-254-213-24.ap-southeast-1.compute.amazonaws.com/Ink.CandidateTest_deploy/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Ink.CandidateTest" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBooking_GetAvailability_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailability" />
+  </wsdl:message>
+  <wsdl:message name="IBooking_GetAvailability_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBooking_CreateNewBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewBooking" />
+  </wsdl:message>
+  <wsdl:message name="IBooking_CreateNewBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBooking_SavePaxDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:SavePaxDetails" />
+  </wsdl:message>
+  <wsdl:message name="IBooking_SavePaxDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SavePaxDetailsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBooking">
+    <wsdl:operation name="GetAvailability">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBooking/GetAvailability" message="tns:IBooking_GetAvailability_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBooking/GetAvailabilityResponse" message="tns:IBooking_GetAvailability_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBooking/CreateNewBooking" message="tns:IBooking_CreateNewBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBooking/CreateNewBookingResponse" message="tns:IBooking_CreateNewBooking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePaxDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBooking/SavePaxDetails" message="tns:IBooking_SavePaxDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBooking/SavePaxDetailsResponse" message="tns:IBooking_SavePaxDetails_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBooking" type="tns:IBooking">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAvailability">
+      <soap:operation soapAction="http://tempuri.org/IBooking/GetAvailability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBooking">
+      <soap:operation soapAction="http://tempuri.org/IBooking/CreateNewBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePaxDetails">
+      <soap:operation soapAction="http://tempuri.org/IBooking/SavePaxDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Booking">
+    <wsdl:port name="BasicHttpBinding_IBooking" binding="tns:BasicHttpBinding_IBooking">
+      <soap:address location="http://ec2-54-254-213-24.ap-southeast-1.compute.amazonaws.com/Ink.CandidateTest_deploy/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

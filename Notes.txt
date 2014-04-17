@@ -1,0 +1,46 @@
+Notes:
+
+-Solution built on VS013
+
+-Solution has 4 projects:
+
+Flights.Model
+	-Contains my domain/transport objects for my response service.
+
+Flights.MyServiceHost.IIS 
+	-Contains my WCF flightsService that is ready to be publish on IIS, I use the strategy pattern to inject the thirdParty SOAP service, this also will help for tests.
+
+Flights.Tests
+	-Is testing the thirdParty service through the Gateway (integration test) and my Flights Service (interaction and integration tests)
+
+Flights.ThirdPartyService
+	-I use Gateway pattern to communicate with the SOAP service
+	-In real app I would log exceptions from SOAP service somewhere such as db or files.
+
+-If you have problems loading the "Flights.MyServiceHost.IIS" project is because first a service need to be created / publish on IIS.
+you would need to comment out following tags on Flights.MyServiceHost.IIS.csproj file and then reload the project:
+
+<ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <!--<UseIIS>True</UseIIS>-->
+          ...
+          <!--<IISUrl>http://localhost:62245/</IISUrl>-->
+          ...
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+
+-If you right click Publish on "Flights.MyServiceHost.IIS" project the service will be publish on "C:\Development\FlightsService" by default,
+then you need to create a website on IIS targeting that path.
+  
+-All unit/integration tests should pass when the service is publish/hosted on IIS and the default endpoint is http://localhost:62245/FlightsService.svc.
+
+
+
+
+
+
+
